@@ -1,0 +1,8 @@
+# Trivy (IaC/Dockerfile) exceptions — every entry MUST have an expiry date and a reason.
+#
+# misconfigurations:
+#   - id: AVD-DS-0002
+#     paths: ["docker/legacy.Dockerfile"]
+#     statement: "Legacy image, to be removed in Q1. Ticket: SEC-124"
+#     expired_at: 2026-12-31
+misconfigurations: []

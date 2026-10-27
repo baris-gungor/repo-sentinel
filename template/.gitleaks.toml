@@ -1,0 +1,15 @@
+# Gitleaks configuration — default rules + project-specific additions.
+# To ignore a specific finding, add its fingerprint to .gitleaksignore
+# or put a "gitleaks:allow" comment at the end of the line (with a reason).
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Test data and snapshots"
+paths = ['''(^|/)(testdata|fixtures|__snapshots__)/''']
+
+# Example of an internal token format:
+# [[rules]]
+# id = "company-internal-token"
+# description = "Company internal service token"
+# regex = '''sk_int_[a-zA-Z0-9]{32}'''

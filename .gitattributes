@@ -1,0 +1,6 @@
+* text=auto
+# bash files must stay LF on every platform (CRLF breaks bash)
+*.sh text eol=lf
+template/.security/config.env text eol=lf
+# cmd files need CRLF
+*.cmd text eol=crlf

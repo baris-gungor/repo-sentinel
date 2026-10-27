@@ -1,0 +1,33 @@
+# repo-sentinel — git hooks (setup: lefthook install)
+#
+# pre-commit: only the files added to the commit, in parallel, within seconds.
+# pre-push:   all changes to be pushed (also catches commits that skipped the hooks).
+#
+# Deliberate skipping (visible, and checked again by CI):
+#   LEFTHOOK_EXCLUDE=sast git commit ...    skip a single check
+#   LEFTHOOK=0 git commit ...               skip all hooks
+min_version: 1.10.0
+
+pre-commit:
+  parallel: true
+  skip:
+    - merge
+    - rebase
+  jobs:
+    - name: hygiene
+      run: bash scripts/security/security.sh hygiene --staged
+    - name: secrets
+      run: bash scripts/security/security.sh secrets --staged
+    - name: deps
+      run: bash scripts/security/security.sh deps --staged
+    - name: iac
+      run: bash scripts/security/security.sh iac --staged
+    - name: workflows
+      run: bash scripts/security/security.sh workflows --staged
+    - name: sast
+      run: bash scripts/security/security.sh sast --staged
+
+pre-push:
+  jobs:
+    - name: security
+      run: bash scripts/security/security.sh check --base auto

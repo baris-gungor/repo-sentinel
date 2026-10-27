@@ -1,0 +1,7 @@
+# OSV-Scanner exceptions — every entry MUST have an expiry date and a reason.
+# When it expires, the finding automatically becomes blocking again.
+#
+# [[IgnoredVulns]]
+# id = "GHSA-xxxx-xxxx-xxxx"
+# ignoreUntil = 2026-12-31T00:00:00Z
+# reason = "The affected function is not used. Ticket: SEC-123. Approved by: @security-owner"
